@@ -17,7 +17,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 public @interface ExistStore {
 
-    String message() default "존재하지 않는 가게입니다.";
+    String message() default "STORE_NOT_FOUND";
 
     Class<?>[] groups() default {};
 
