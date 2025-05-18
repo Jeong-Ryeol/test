@@ -1,7 +1,7 @@
 package umc.study.converter;
 
-import umc.ApiMission2.code.ReviewRequestDTO;
-import umc.ApiMission2.code.ReviewResponseDTO;
+import umc.study.ApiMission2.code.ReviewRequestDTO;
+import umc.study.ApiMission2.code.ReviewResponseDTO;
 import umc.study.domain.Review;
 import umc.study.domain.Store;
 import umc.study.domain.UserMain;
@@ -11,6 +11,7 @@ public class ReviewConverter {
         return Review.builder()
                 .score(dto.getScore())
                 .body(dto.getBody())
+                .title(dto.getTitle())
                 .store(store)
                 .userMain(user)
                 .build();

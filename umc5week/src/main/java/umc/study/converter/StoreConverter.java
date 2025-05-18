@@ -7,7 +7,6 @@ import umc.study.domain.Store;
 import umc.study.domain.UserMain;
 
 public class StoreConverter {
-
     public static Store toStore(StoreRequestDTO dto, Region region, UserMain userMain) {
         return Store.builder()
                 .name(dto.getName())

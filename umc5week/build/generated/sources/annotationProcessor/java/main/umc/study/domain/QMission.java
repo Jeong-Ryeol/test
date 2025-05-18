@@ -39,6 +39,8 @@ public class QMission extends EntityPathBase<Mission> {
 
     public final NumberPath<Integer> reward = createNumber("reward", Integer.class);
 
+    public final QStore store;
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
 
@@ -61,6 +63,7 @@ public class QMission extends EntityPathBase<Mission> {
     public QMission(Class<? extends Mission> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.member = inits.isInitialized("member") ? new QMember(forProperty("member")) : null;
+        this.store = inits.isInitialized("store") ? new QStore(forProperty("store"), inits.get("store")) : null;
     }
 
 }
