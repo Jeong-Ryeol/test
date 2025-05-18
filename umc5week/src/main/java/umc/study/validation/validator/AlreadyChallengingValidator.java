@@ -12,6 +12,7 @@ import umc.study.validation.annotation.AlreadyChallenging;
 @RequiredArgsConstructor
 public class AlreadyChallengingValidator implements ConstraintValidator<AlreadyChallenging, Long> {
 
+
     private final MemberMissionRepository memberMissionRepository;
 
     @Override
@@ -20,4 +21,5 @@ public class AlreadyChallengingValidator implements ConstraintValidator<AlreadyC
 
         return true;
     }
+
 }

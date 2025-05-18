@@ -22,14 +22,13 @@ public class ReviewCommandServiceImpl implements ReviewCommandService {
 
     @Override
     @Transactional
-    public Review writeReview(ReviewRequestDTO request) {
+    public Review createReview(ReviewRequestDTO request) {
         Store store = storeRepository.findById(request.getStoreId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 가게입니다."));
-
-        UserMain user = userMainRepository.findById(request.getUserMainId())
+        UserMain userMain = userMainRepository.findById(request.getUserMainId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자입니다."));
 
-        Review review = ReviewConverter.toReview(request, store, user);
+        Review review = ReviewConverter.toReview(request, store, userMain);
         return reviewRepository.save(review);
     }
 }

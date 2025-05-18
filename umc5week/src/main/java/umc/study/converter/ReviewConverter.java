@@ -7,23 +7,24 @@ import umc.study.domain.Store;
 import umc.study.domain.UserMain;
 
 public class ReviewConverter {
-    public static Review toReview(ReviewRequestDTO dto, Store store, UserMain user) {
+
+    public static Review toReview(ReviewRequestDTO dto, Store store, UserMain userMain) {
         return Review.builder()
+                .store(store)
+                .userMain(userMain)
+                .title(dto.getTitle())
                 .score(dto.getScore())
                 .body(dto.getBody())
-                .title(dto.getTitle())
-                .store(store)
-                .userMain(user)
                 .build();
     }
 
-    public static ReviewResponseDTO toResponseDTO(Review review) {
+    public static ReviewResponseDTO toDTO(Review review) {
         return ReviewResponseDTO.builder()
                 .reviewId(review.getId())
+                .title(review.getTitle())
                 .body(review.getBody())
                 .score(review.getScore())
                 .storeName(review.getStore().getName())
-                .userName(review.getUserMain().getName())
                 .build();
     }
 }
