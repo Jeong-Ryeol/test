@@ -1,25 +1,29 @@
-package umc.study.web.controller;
+package umc.study.validation.validator;
 
-import jakarta.validation.Valid;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
-import umc.study.ApiMission2.code.ReviewRequestDTO;
-import umc.study.ApiMission2.code.ReviewResponseDTO;
-import umc.study.ApiPayload.ApiResponse;
-import umc.study.converter.ReviewConverter;
-import umc.study.domain.Review;
-import umc.study.service.ReviewService.ReviewCommandService;
+import org.springframework.stereotype.Component;
+import umc.study.repository.StoreRepository.StoreRepository;
+import umc.study.validation.annotation.ExistStore;
 
-@RestController
+@Component
 @RequiredArgsConstructor
-@RequestMapping("/reviews")
-public class ReviewRestController {
+public class ExistStoreValidator implements ConstraintValidator<ExistStore, Long> {
 
-    private final ReviewCommandService reviewCommandService;
+    private final StoreRepository storeRepository;
 
-    @PostMapping("/create")
-    public ApiResponse<ReviewResponseDTO> createReview(@RequestBody @Valid ReviewRequestDTO request) {
-        Review review = reviewCommandService.createReview(request);
-        return ApiResponse.onSuccess(ReviewConverter.toDTO(review));
+    @Override
+    public boolean isValid(Long storeId, ConstraintValidatorContext context) {
+        if (storeId == null) return false;
+
+        boolean exists = storeRepository.existsById(storeId);
+
+        if (!exists) {
+            context.disableDefaultConstraintViolation();
+            context.buildConstraintViolationWithTemplate("존재하지 않는 가게입니다.").addConstraintViolation();
+        }
+
+        return exists;
     }
 }
