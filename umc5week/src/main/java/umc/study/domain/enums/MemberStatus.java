@@ -1,5 +1,5 @@
 package umc.study.domain.enums;
 
 public enum MemberStatus {
-    ACTIVE, INACTIVE, DELETED
+    ACTIVE, INACTIVE, DELETED,CHALLENGING
 }

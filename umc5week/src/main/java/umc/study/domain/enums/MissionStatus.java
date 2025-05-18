@@ -1,5 +1,5 @@
 package umc.study.domain.enums;
 
 public enum MissionStatus {
-    ONGOING, COMPLETED, EXPIRED
+    ONGOING, COMPLETED, CHALLENGING, EXPIRED
 }
