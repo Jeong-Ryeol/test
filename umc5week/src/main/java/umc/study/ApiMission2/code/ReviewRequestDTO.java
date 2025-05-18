@@ -5,13 +5,16 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
+import umc.study.validation.annotation.AlreadyReviewed;
 import umc.study.validation.annotation.ExistStore;
 
 @Getter
+@AlreadyReviewed
 public class ReviewRequestDTO {
     @NotNull(message = "storeId는 필수입니다.")
     @ExistStore
     private Long storeId;
+
 
     @NotNull(message = "userMainId는 필수입니다.")
     private Long userMainId;
